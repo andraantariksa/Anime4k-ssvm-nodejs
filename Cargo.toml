@@ -1,7 +1,7 @@
 [package]
-name = "ssvm_nodejs_starter"
+name = "Anime4k-ssvm-nodejs"
 version = "0.1.0"
-authors = ["ubuntu"]
+authors = ["Andra Antariksa <andra.antariksa@gmail.com>"]
 edition = "2018"
 
 [package.metadata.ssvmup.profile.release]
