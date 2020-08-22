@@ -14,3 +14,4 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x |  bash \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ADD . ./
 RUN ssvmup build
+CMD node node/app.js
