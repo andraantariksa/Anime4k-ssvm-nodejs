@@ -1,19 +1,21 @@
-const { say } = require('../pkg/ssvm_nodejs_starter_lib.js');
+const { anime4k } = require('../pkg/ssvm_nodejs_starter_lib.js');
+const express = require('express');
+const fileUpload = require('express-fileupload');
 
-const http = require('http');
-const url = require('url');
 const hostname = '0.0.0.0';
 const port = 3000;
 
-const server = http.createServer((req, res) => {
-  const queryObject = url.parse(req.url,true).query;
-  if (!queryObject['name']) {
-    res.end(`Please use command curl http://${hostname}:${port}/?name=MyName \n`);
-  } else {
-    res.end(say(queryObject['name']) + '\n');
-  }
+const app = express();
+
+app.use(fileUpload());
+app.use(express.static(__dirname + '/public'));
+
+app.post('/upload', (req, res) => {
+  const buf = Uint8Array.from(req.files.image.data);
+  res.set('Content-Type', 'text/png');
+  res.end(Buffer.from(anime4k(buf)));
 });
 
-server.listen(port, hostname, () => {
+app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
