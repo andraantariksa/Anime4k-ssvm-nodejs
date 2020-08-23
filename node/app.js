@@ -2,8 +2,7 @@ const { anime4k } = require('../pkg/ssvm_nodejs_starter_lib.js');
 const express = require('express');
 const fileUpload = require('express-fileupload');
 
-const hostname = '0.0.0.0';
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -16,6 +15,6 @@ app.post('/upload', (req, res) => {
   res.end(Buffer.from(anime4k(buf)));
 });
 
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+app.listen(PORT, () => {
+  console.log(`Server running at http://127.0.0.1:${PORT}/`);
 });
